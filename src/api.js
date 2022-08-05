@@ -44,5 +44,8 @@ app.use(`/.netlify/functions/api`, router); // path must match the path you set 
 // 	console.log(`Server is running on port ${PORT}`);
 // });
 
-
-module.exports.handler = serverless(app);
+const handler = serverless(app);
+module.exports.handler = async (event, context) => {
+	 let res = await handler(event, context);
+	 return res;
+}
